@@ -1,18 +1,10 @@
 import {
-  BookOpen,
-  Heart,
-  DollarSign,
-  Leaf,
   Users,
-  TrendingUp,
-  Bell,
-  Activity,
   BarChart,
-  Target,
-  Smile,
+  Heart,
   Zap,
 } from 'lucide-react';
-import type { StudentInsight, AdminSummary, SystemAlert, User } from './types';
+import type { AdminSummary, SystemAlert, User, StudentData } from './types';
 
 export const studentUser: User = {
   name: 'Alex Johnson',
@@ -20,23 +12,35 @@ export const studentUser: User = {
   avatarUrl: 'avatar-student',
   role: 'student',
   data: {
+    sleep: {
+      sleepHours: 6.5,
+      lateNightStudy: 3,
+      sleepQuality: 'average',
+    },
     academics: {
-      internalMarks: 82,
-      externalMarks: 75,
-      attendance: 91,
+      cgpa: 3.2,
+      attendance: 85,
+      studyHours: 4,
     },
     wellbeing: {
-      sleep: 6.5, // hours per night
-      stressLevel: 4, // out of 10
+      stressLevel: 'medium',
+      physicalHealth: 'average',
+      exhaustionFrequency: 'sometimes',
+    },
+    social: {
+      interactionFrequency: 3,
+      clubParticipation: true,
+      isolationFeeling: 'sometimes',
     },
     finance: {
-      scholarshipApplied: true,
-      partTimeHours: 8,
+      feeStress: true,
+      partTimeWorkHours: 10,
+      scholarshipAwareness: true,
     },
-    health: {
-      exercise: 3, // times per week
-      yoga: 1, // times per week
-    },
+    sustainability: {
+      recyclingFrequency: 'sometimes',
+      awareOfInitiatives: false,
+    }
   },
 };
 
@@ -47,40 +51,27 @@ export const adminUser: User = {
   role: 'admin',
 };
 
-export const studentInsights: StudentInsight[] = [
+export const studentData: StudentData[] = [
   {
-    id: 'academics',
-    category: 'Academics',
-    message: 'Your internal assessment scores are strong! Focus on external exams to boost your overall grade.',
-    icon: Target,
-    color: 'text-blue-500',
-    isFocus: true,
+    sleepHours: 6.5,
+    studyHours: 4,
+    stressLevel: 'medium',
+    attendance: 85,
   },
   {
-    id: 'well-being',
-    category: 'Well-being',
-    message:
-      'Average sleep is 6.5 hours. Aiming for 7-8 hours can improve focus and reduce stress.',
-    icon: Smile,
-    color: 'text-pink-500',
+    sleepHours: 5,
+    studyHours: 6,
+    stressLevel: 'high',
+    attendance: 75,
   },
   {
-    id: 'finance',
-    category: 'Finance',
-    message:
-      'Great job on securing a part-time job! Explore the new "Earn & Learn" grant for working students.',
-    icon: DollarSign,
-    color: 'text-green-500',
-  },
-  {
-    id: 'health',
-    category: 'Health',
-    message:
-      'You are exercising 3 times a week. Join the campus running club to stay motivated.',
-    icon: Activity,
-    color: 'text-orange-500',
-  },
+    sleepHours: 8,
+    studyHours: 3,
+    stressLevel: 'low',
+    attendance: 95,
+  }
 ];
+
 
 export const adminSummaries: AdminSummary[] = [
   {
@@ -134,16 +125,6 @@ export const systemAlerts: SystemAlert[] = [
   },
 ];
 
-export const aggregatedData = {
-  academicData:
-    'Average internal marks are at 85%, but external marks are lagging at 72%. STEM students show higher attendance than Arts students.',
-  wellbeingData:
-    'Average sleep duration has dropped to 6.2 hours/night. Stress levels are highest among students with low academic performance.',
-  financeData:
-    '45% of students have applied for scholarships. There is a 20% increase in applications for on-campus jobs.',
-  healthData:
-    'Only 40% of students meet the recommended 3 exercise sessions per week. Yoga and meditation class attendance is up by 15%.',
-};
 
 export const academicPerformanceData = [
     { discipline: "Engineering", internal: 85, external: 78 },

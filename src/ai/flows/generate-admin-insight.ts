@@ -10,19 +10,25 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import type { StudentData } from '@/lib/types';
 
 const AdminInsightInputSchema = z.object({
-  academicData: z.string().describe('Aggregated academic data of students.'),
-  wellbeingData: z.string().describe('Aggregated wellbeing data of students.'),
-  financeData: z.string().describe('Aggregated finance related data of students.'),
-  sustainabilityData: z.string().describe('Aggregated sustainability data of students.'),
+  studentData: z.array(z.object({
+    sleepHours: z.number(),
+    studyHours: z.number(),
+    stressLevel: z.enum(["low", "medium", "high"]),
+    attendance: z.number(),
+  })).describe('Aggregated student data including sleep, study hours, stress, and attendance.')
 });
+
 export type AdminInsightInput = z.infer<typeof AdminInsightInputSchema>;
 
+
 const AdminInsightOutputSchema = z.object({
-  insight: z.string().describe('A concise, professional insight for administrators.'),
+  insight: z.string().describe('A concise, professional, supportive, non-judgmental, and preventive insight for administrators focusing on early intervention.'),
 });
 export type AdminInsightOutput = z.infer<typeof AdminInsightOutputSchema>;
+
 
 export async function generateAdminInsight(input: AdminInsightInput): Promise<AdminInsightOutput> {
   return generateAdminInsightFlow(input);
@@ -32,14 +38,17 @@ const adminInsightPrompt = ai.definePrompt({
   name: 'adminInsightPrompt',
   input: {schema: AdminInsightInputSchema},
   output: {schema: AdminInsightOutputSchema},
-  prompt: `You are an AI assistant that analyzes aggregated student data and generates concise insights for administrators.
+  prompt: `You are an AI assistant that analyzes aggregated student data and generates concise, preventive insights for university administrators. Your tone must be professional, supportive, and non-judgmental. Focus on early intervention opportunities, not diagnosis.
 
-  Analyze the following data and provide a 2-3 sentence insight that is preventive and advisory in tone.
+  Analyze the following aggregated student data trends. Look for combined indicators like reduced sleep, rising academic load, and attendance fluctuations to identify potential risks like student burnout.
 
-  Academic Data: {{{academicData}}}
-  Wellbeing Data: {{{wellbeingData}}}
-  Finance Data: {{{financeData}}}
-  Sustainability Data: {{{sustainabilityData}}}
+  Data:
+  {{#each studentData}}
+  - Student: Sleep: {{sleepHours}}h/night, Study: {{studyHours}}h/day, Stress: {{stressLevel}}, Attendance: {{attendance}}%
+  {{/each}}
+
+  Based on your analysis, generate a 2-3 sentence insight.
+  Example Insight: "Combined indicators of reduced sleep, rising academic load, and attendance fluctuations suggest early burnout risk. Introducing structured recovery breaks and flexible deadlines may improve student well-being and performance."
   `,
 });
 

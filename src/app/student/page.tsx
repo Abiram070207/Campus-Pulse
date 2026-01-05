@@ -5,11 +5,20 @@ import { studentUser } from '@/lib/data';
 import DashboardLayout from '@/components/DashboardLayout';
 import StudentDashboard from '@/components/student/StudentDashboard';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useState } from 'react';
+import type { User } from '@/lib/types';
+
 
 export default function StudentPage() {
-  const { isLoading, isAuthorized } = useAuth('student');
+  const { isLoading, isAuthorized }_ = useAuth('student');
+  const [user, setUser] = useState<User>(studentUser);
 
-  if (isLoading || !isAuthorized) {
+  // In a real app, you'd likely have a single `useAuth` hook that returns the user object.
+  // We are using a local state here to simulate data updates.
+  const isUserDataLoading = !user;
+
+
+  if (isLoading || isUserDataLoading) {
     return (
        <div className="flex h-screen w-full items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
@@ -24,8 +33,8 @@ export default function StudentPage() {
   }
 
   return (
-    <DashboardLayout user={studentUser}>
-      <StudentDashboard />
+    <DashboardLayout user={user}>
+      <StudentDashboard user={user} setUser={setUser}/>
     </DashboardLayout>
   );
 }

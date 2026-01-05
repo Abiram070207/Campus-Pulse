@@ -6,6 +6,7 @@ import { getAIInsight } from '@/app/actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { studentData } from '@/lib/data';
 
 export default function AIInsight() {
   const [insight, setInsight] = useState('');
@@ -14,7 +15,7 @@ export default function AIInsight() {
 
   useEffect(() => {
     startTransition(async () => {
-      const result = await getAIInsight();
+      const result = await getAIInsight(studentData);
       if (result.error) {
         setError(result.error);
       } else if (result.insight) {
@@ -27,7 +28,7 @@ export default function AIInsight() {
     <Card className="h-full">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-base font-medium">AI Insight Summary</CardTitle>
-        <Lightbulb className="h-5 w-5 text-muted-foreground" />
+        <Lightbulb className="h-5 w-5 text-accent" />
       </CardHeader>
       <CardContent>
         {isPending ? (
