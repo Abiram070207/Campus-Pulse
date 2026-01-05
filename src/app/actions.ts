@@ -43,7 +43,7 @@ export async function getStudentInsights(user: User) {
     });
   }
 
-  if (user.data.wellbeing.sleepHours < 6) {
+  if (user.data.sleep.sleepHours < 6) {
     insights.push({
       id: 'wellbeing_sleep',
       category: 'Well-being',

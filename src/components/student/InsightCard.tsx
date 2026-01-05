@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BookOpen, DollarSign, Heart, Leaf } from 'lucide-react';
+import { BookOpen, DollarSign, Heart, Leaf, LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { StudentInsight } from '@/lib/types';
 
 
-const iconMap = {
+const iconMap: { [key: string]: LucideIcon } = {
   Academics: BookOpen,
   'Well-being': Heart,
   Finance: DollarSign,
@@ -24,7 +24,7 @@ type InsightCardProps = {
 
 export default function InsightCard({ insight }: InsightCardProps) {
   const Icon = iconMap[insight.category] || BookOpen;
-  const color = colorMap[insight.category] || 'text-muted-foreground';
+  const color = colorMap[insight.category as keyof typeof colorMap] || 'text-muted-foreground';
 
   return (
     <Card className="flex h-full flex-col transition-transform hover:scale-[1.02] hover:shadow-lg">

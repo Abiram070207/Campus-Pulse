@@ -1,11 +1,5 @@
 'use client'
 import { getStudentInsights } from '@/app/actions';
-import {
-  BookOpen,
-  DollarSign,
-  Heart,
-  Leaf
-} from 'lucide-react';
 import type { StudentInsight, User } from '@/lib/types';
 import InsightCard from './InsightCard';
 import StudentDataForm from './StudentDataForm';
@@ -15,13 +9,6 @@ import GoalTracker from './GoalTracker';
 import CheckInStreak from './CheckInStreak';
 import ResourceHub from './ResourceHub';
 import PersonalChart from './PersonalChart';
-
-const iconMap = {
-  Academics: BookOpen,
-  'Well-being': Heart,
-  Finance: DollarSign,
-  Sustainability: Leaf,
-};
 
 const getGreeting = () => {
     const hour = new Date().getHours();
@@ -39,11 +26,7 @@ export default function StudentDashboard({ user, setUser }: { user: User, setUse
 
     async function fetchInsights() {
       const studentInsights = await getStudentInsights(user);
-      const mappedInsights = studentInsights.map((insight: any) => ({
-        ...insight,
-        icon: iconMap[insight.category as keyof typeof iconMap]
-      }));
-      setInsights(mappedInsights);
+      setInsights(studentInsights);
     }
     fetchInsights();
   }, [user]);
