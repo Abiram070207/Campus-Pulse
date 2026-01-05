@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { studentData } from '@/lib/data';
+import type { StudentData } from '@/lib/types';
 
 export default function AIInsight() {
   const [insight, setInsight] = useState('');
@@ -15,7 +16,13 @@ export default function AIInsight() {
 
   useEffect(() => {
     startTransition(async () => {
-      const result = await getAIInsight(studentData);
+      const data: StudentData[] = studentData.map(d => ({
+        sleepHours: d.sleepHours,
+        studyHours: d.studyHours,
+        stressLevel: d.stressLevel,
+        attendance: d.attendance,
+      }));
+      const result = await getAIInsight(data);
       if (result.error) {
         setError(result.error);
       } else if (result.insight) {

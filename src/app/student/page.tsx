@@ -10,7 +10,7 @@ import type { User } from '@/lib/types';
 
 
 export default function StudentPage() {
-  const { isLoading, isAuthorized }_ = useAuth('student');
+  const { isLoading, isAuthorized } = useAuth('student');
   const [user, setUser] = useState<User>(studentUser);
 
   // In a real app, you'd likely have a single `useAuth` hook that returns the user object.

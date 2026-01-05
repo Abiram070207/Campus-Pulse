@@ -10,7 +10,6 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import type { StudentData } from '@/lib/types';
 
 const AdminInsightInputSchema = z.object({
   studentData: z.array(z.object({
