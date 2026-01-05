@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "avatar-student",
+      "description": "Student avatar",
+      "imageUrl": "https://images.unsplash.com/photo-1743327608361-698da1c56900?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwb3J0cmFpdCUyMHN0dWRlbnR8ZW58MHx8fHwxNzY3NjI2NjE4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "portrait student"
+    },
+    {
+      "id": "avatar-admin",
+      "description": "Admin avatar",
+      "imageUrl": "https://images.unsplash.com/photo-1683342599486-761e6afce7e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwb3J0cmFpdCUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3Njc2MDU5Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "portrait professional"
+    }
+  ]
 }

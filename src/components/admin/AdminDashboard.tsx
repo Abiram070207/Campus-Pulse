@@ -1,0 +1,24 @@
+import { adminSummaries, systemAlerts } from '@/lib/data';
+import SummaryCard from './SummaryCard';
+import Alerts from './Alerts';
+import AIInsight from './AIInsight';
+
+export default function AdminDashboard() {
+  return (
+    <div className="space-y-6">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {adminSummaries.map((summary) => (
+          <SummaryCard key={summary.id} summary={summary} />
+        ))}
+      </div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <Alerts alerts={systemAlerts} />
+        </div>
+        <div>
+          <AIInsight />
+        </div>
+      </div>
+    </div>
+  );
+}
