@@ -150,6 +150,48 @@ export default function StudentDataForm({ user, setUser }: { user: User, setUser
             </div>
           </div>
 
+          {/* Sustainability */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium">Sustainability</h3>
+            <div className="flex items-center justify-between rounded-lg border p-3">
+              <div className="space-y-0.5">
+                <Label>Aware of Campus Initiatives</Label>
+                <p className="text-sm text-muted-foreground">
+                  Are you aware of our campus sustainability programs?
+                </p>
+              </div>
+              <Switch
+                checked={formData.sustainability.awareOfInitiatives}
+                onCheckedChange={(checked) =>
+                  handleSwitchChange('sustainability', 'awareOfInitiatives', checked)
+                }
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Recycling Frequency</Label>
+              <RadioGroup
+                defaultValue={formData.sustainability.recyclingFrequency}
+                className="flex gap-4"
+                onValueChange={(value) =>
+                  handleRadioChange('sustainability', 'recyclingFrequency', value)
+                }
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="always" id="r-always" />
+                  <Label htmlFor="r-always">Always</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="sometimes" id="r-sometimes" />
+                  <Label htmlFor="r-sometimes">Sometimes</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="never" id="r-never" />
+                  <Label htmlFor="r-never">Never</Label>
+                </div>
+              </RadioGroup>
+            </div>
+          </div>
+
 
           <Button type="submit" className="w-full">Update My Data</Button>
         </form>
