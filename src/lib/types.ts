@@ -13,6 +13,7 @@ export interface AdminSummary {
   value: string;
   change: string;
   icon: LucideIcon;
+  changeType?: 'positive' | 'negative';
 }
 
 export interface SystemAlert {
@@ -31,8 +32,16 @@ export interface User {
 }
 
 export interface StudentData {
+  id: number;
+  name: string;
   sleepHours: number;
   studyHours: number;
   stressLevel: 'low' | 'medium' | 'high';
   attendance: number;
+  cgpa: number;
+}
+
+export interface Goal {
+  type: 'sleep' | 'study';
+  value: number;
 }
